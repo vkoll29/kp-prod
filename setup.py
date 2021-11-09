@@ -74,12 +74,16 @@ def send_message(chat_id, msg):
 
 
 def welcome(data):
-    chat_id = get_chat_id(data)
+    try:
+        chat_id = get_chat_id(data)
 
-    message = "Hi, Welcome to Kenya Power Scheduled Maintenance. " \
-              "To get started reply with any of the following commands:" \
-              "Type 'all' to get all the areas that will be affected."
-    send_message(chat_id, message)
+        message = "Hi, Welcome to Kenya Power Scheduled Maintenance. " \
+                  "To get started reply with any of the following commands:" \
+                  "Type 'all' to get all the areas that will be affected."
+        send_message(chat_id, message)
+        print(chat_id)
+    except Exception as e:
+        print(f'Error: Not a direct chat\n Exception: {e}')
 
 
 def handle_scenarios(data, text):
