@@ -42,7 +42,7 @@ def get_chat_info(request):
         req_json = request.decode('utf-8')
         results = json.loads(req_json)
         chat_id = results['message']['chat']['id']
-        f_name = results['message']['first_name']
+        f_name = results['message']['chat']['first_name']
 
         # print(chat_id)
         # results = requests.get(url).json()
