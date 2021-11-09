@@ -37,21 +37,24 @@ def build_response(list_of_areas):
     return msg
 
 
-def get_chat_id(request):
+def get_chat_info(request):
     try:
         req_json = request.decode('utf-8')
         results = json.loads(req_json)
         chat_id = results['message']['chat']['id']
+        f_name = results['message']['first_name']
 
-        print(chat_id)
+        # print(chat_id)
         # results = requests.get(url).json()
-        return chat_id
-
+        return chat_id, f_name
 
     except Exception as e:
         print(f'Exception: {e}')
 
-    # print(results.json())
+# def get_chat_info(request):
+
+
+# print(results.json())
 
 
 def get_message(request):
@@ -70,16 +73,17 @@ def send_message(chat_id, msg):
     text = quote(msg)
     url = f"{send_endpoint}?chat_id={chat_id}&text={text}&parse_mode=html"
     response = requests.post(url)
-    print(response.text)
+    print(response)
 
 
 def welcome(data):
     try:
-        chat_id = get_chat_id(data)
+        chat_id, f_name = get_chat_info(data)
 
-        message = "Hi, Welcome to Kenya Power Scheduled Maintenance. " \
-                  "To get started reply with any of the following commands:" \
-                  "Type 'all' to get all the areas that will be affected."
+        message = f"<pre>Hi {f_name}, Thanks for showing interest in this scheduled maintenance alert system." \
+                  "The app is currently heavily in development." \
+                  "However, once there is a new release (whether testing or stable) you will be the first to know. " \
+                  "We promise</pre>"
         send_message(chat_id, message)
         print(chat_id)
     except Exception as e:
@@ -87,7 +91,7 @@ def welcome(data):
 
 
 def handle_scenarios(data, text):
-    chat_id = get_chat_id(data)
+    chat_id, f_name = get_chat_info(data)
 
     if text == 'all':
         outgoing_message = build_response(all_locations)
@@ -105,9 +109,6 @@ def handle_scenarios(data, text):
             <pre>pre-formatted fixed-width code block</pre>
             <pre><code class="language-python">pre-formatted fixed-width code block written in the Python programming language</code></pre>
             """
-
-    elif text == 'me':
-        outgoing_message = "<pre>You are the love of my life, Bridget </pre>"
 
     else:
         outgoing_message = "<b><em>Incorrect input. Please enter the specified commands:</em></b> <em>all</em>"
