@@ -15,9 +15,9 @@ class hooks:
         return f'Hi {name}'
 
     def POST(self, req):
-        # welcome()
-        incoming_msg = get_message(web.data())
-        handle_scenarios(web.data(), incoming_msg)
+        welcome()
+        # incoming_msg = get_message(web.data())
+        # handle_scenarios(web.data(), incoming_msg)
 
         # data = web.data()
         # print('Message Receivedclea')
