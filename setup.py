@@ -2,10 +2,9 @@ import config as c
 import requests
 import json
 import logging
-from pymongo import MongoClient
 from urllib.parse import quote
-# from helpers.data_schema import generate_data_schema
-from db.db_helpers import select_all
+from helpers.data_schema import generate_data_schema
+from db.db_helpers import insert_many_items, select_all
 
 # updates_endpoint = f"https://api.telegram.org/bot{c.tg_credentials['token']}/getUpdates"
 
@@ -16,6 +15,9 @@ from db.db_helpers import select_all
 #     regions = db.affected_regions
 #     all_locs = list(regions.find())
 #     return all_locs
+
+locs = generate_data_schema()
+insert_many_items('kplc_region_demo', 'affected_regions', locs)
 
 
 all_locations = select_all("kplc_region_demo", "affected_regions")

@@ -7,7 +7,7 @@ from helpers.read_image import read_img
 # Using local image here. In production, this will be a remote image either directly from twitter or downloaded and
 # stored online
 images_folder = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../data")
-img_path = os.path.join(images_folder, "E9AskcQXoAodJ0K.png")
+img_path = os.path.join(images_folder, "FA35VgdWEBsGCza.png")
 image = open(img_path, "rb")
 
 # this is the result of Azure CS extracting text from the image
