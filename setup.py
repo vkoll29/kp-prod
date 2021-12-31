@@ -3,7 +3,7 @@ import requests
 import json
 import logging
 from urllib.parse import quote
-from helpers.data_schema import generate_data_schema
+# from helpers.data_schema import generate_data_schema
 from db.db_helpers import insert_many_items, select_all
 
 # updates_endpoint = f"https://api.telegram.org/bot{c.tg_credentials['token']}/getUpdates"
