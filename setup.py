@@ -16,8 +16,8 @@ from db.db_helpers import insert_many_items, select_all
 #     all_locs = list(regions.find())
 #     return all_locs
 
-locs = generate_data_schema()
-insert_many_items('kplc_region_demo', 'affected_regions', locs)
+# locs = generate_data_schema()
+# insert_many_items('kplc_region_demo', 'affected_regions', locs)
 
 
 all_locations = select_all("kplc_region_demo", "affected_regions")
